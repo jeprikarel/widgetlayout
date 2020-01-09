@@ -1,10 +1,8 @@
-
-  
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
+//import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
 void main() {
-  debugPaintSizeEnabled = false; // Set to true for visual layout
+ // debugPaintSizeEnabled = false; // Set to true for visual layout
   runApp(MyApp());
 }
 
@@ -32,12 +30,12 @@ class MyApp extends StatelessWidget {
 
     final subTitle = Text(
       'Pavlova is a meringue-based dessert named after the Russian ballerina '
-          'Anna Pavlova. Pavlova features a crisp crust and soft, light inside, '
-          'topped with fruit and whipped cream.',
+      'Anna Pavlova. Pavlova features a crisp crust and soft, light inside, '
+      'topped with fruit and whipped cream.',
       textAlign: TextAlign.center,
       style: TextStyle(
         fontFamily: 'Georgia',
-        fontSize: 25,
+        fontSize: 14,
       ),
     );
 
@@ -67,13 +65,13 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w800,
               fontFamily: 'Roboto',
               letterSpacing: 0.5,
-              fontSize: 20,
+              fontSize: 16,
             ),
           ),
         ],
       ),
     );
-    // #enddocregion ratings
+    // #enddocregion ratingsv
 
     // #docregion iconList
     final descTextStyle = TextStyle(
@@ -81,7 +79,7 @@ class MyApp extends StatelessWidget {
       fontWeight: FontWeight.w800,
       fontFamily: 'Roboto',
       letterSpacing: 0.5,
-      fontSize: 18,
+      fontSize: 14,
       height: 2,
     );
 
@@ -124,20 +122,23 @@ class MyApp extends StatelessWidget {
     // #docregion leftColumn
     final leftColumn = Container(
       padding: EdgeInsets.fromLTRB(20, 30, 20, 20),
-      child: Column(
-        children: [
-          titleText,
-          subTitle,
-          ratings,
-          iconList,
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            titleText,
+            subTitle,
+            ratings,
+            iconList,
+          ],
+        ),
       ),
     );
     // #enddocregion leftColumn
 
     final mainImage = Image.asset(
       'images/pavlova.jpg',
-      fit: BoxFit.cover,
+      fit: BoxFit.fill,
+      width: 600,
     );
 
     return Scaffold(
@@ -150,14 +151,17 @@ class MyApp extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(0, 40, 0, 30),
           height: 600,
           child: Card(
-            child: Row(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 440,
-                  child: leftColumn,
+                Expanded(child: mainImage,),
+                Expanded(flex: 2,
+                  child: Container(
+                    width: 440,
+                   // height: 900,
+                    child: leftColumn,
+                  ),
                 ),
-                mainImage,
               ],
             ),
           ),
@@ -167,4 +171,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
